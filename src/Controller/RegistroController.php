@@ -34,7 +34,7 @@ class RegistroController extends AbstractController
             $em->flush();
 
         
-            $enviando = $SendEmail->sendEmail($mailer);
+            $enviando = $SendEmail->sendEmail($mailer, $user);
             dump($enviando);die;
             /*
             // generate a signed url and email it to the user
