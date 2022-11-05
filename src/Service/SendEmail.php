@@ -20,8 +20,8 @@ class SendEmail
             //->bcc('bcc@example.com')
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
-            ->subject('Conseguido!')
-            ->text('Sending emails is fun again!')
+            ->subject("Datos de acceso a la app de fichaje")
+            ->text("Tu contraseña es: {$user->getPassword()}")
             ->html('<p>See Twig integration for better HTML integration!</p>');
 
         $mailer->send($email);
