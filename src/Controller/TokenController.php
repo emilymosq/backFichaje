@@ -19,10 +19,9 @@ use App\Entity\User;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
  
 
-// #[Route(path: '/apitoken')]
 class TokenController extends AbstractController
 {
-    
+
     #[Route(path: '/token', name: 'app_token')]
     public function index(Request $request, UserRepository $userRepository): Response
    {
