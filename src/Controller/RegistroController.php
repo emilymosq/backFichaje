@@ -23,7 +23,7 @@ class RegistroController extends AbstractController
             $user->setPassword($passwordHasher->hashPassword($user, $form['password']->getData()));
             $em->persist($user);
             $em->flush();
-
+            $this->addFlash('exito', User::REGISTRO_EXITOSO);
             return $this->redirectToRoute('app_registro');
         }
 
