@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Service;
+
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mime\Email;
+use Symfony\Bridge\Twig\Mime\BodyRenderer;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mime\Address;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+use App\Entity\User;
+
+class SendEmail
+
+{
+    public function sendEmail(MailerInterface $mailer, User $user ): Response
+    {
+        $email = (new Email())
+            ->from('info@coderf5.es')
+            // ->to('cristy.si@gmail.com')
+            ->to($user->getEmail())
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject("Datos de acceso a la app de fichaje")
+            ->text("Tu contraseña es: {$user->getPassword()}")
+            ->html('<p>See Twig integration for better HTML integration!</p>');
+
+        $mailer->send($email);
+
+        dump('Enviado');die;
+
+    }
+}

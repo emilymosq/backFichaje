@@ -38,7 +38,7 @@ class SendEmail
             ->from(new Address('example-from@example.com', 'Example'))
             ->to('example-to@example.com')
             ->subject('Subject')
-            ->htmlTemplate('mail/index.html.twig')
+            ->htmlTemplate('emails/my-template.html.twig')
             ->context([]);
 
         // IMPORTANT: as you are using a customized mailer instance, you have to make the following
