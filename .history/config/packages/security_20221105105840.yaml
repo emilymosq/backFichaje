@@ -14,20 +14,6 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        api_login:
-            pattern: ^/api/login
-            stateless: true
-            json_login:
-                check_path: /api/login_check #defined in config/routes.yaml
-                username_path: email
-                password_path: password
-                success_handler: lexik_jwt_authentication.handler.authentication_success
-                failure_handler: lexik_jwt_authentication.handler.authentication_failure       
-        api:
-            pattern: ^/api
-            stateless: true
-            jwt: ~
-
         main:
             lazy: true
             provider: app_user_provider
@@ -37,17 +23,26 @@ security:
                 check_path: login
             logout:
                 path: app_logout
-            entry_point: 'form_login'
+            user_checker: App\Security\UserIsVerified
+        api_login:
+            pattern: ^/api/login
+            stateless: true
+            json_login:
+                check_path: /api/login_check #defined in config/routes.yaml
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure       
         
+        api:
+            pattern: ^/api
+            stateless: true
+            jwt: ~
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/registro, roles: ROLE_ADMIN }
+        # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/registro, roles: PUBLIC_ACCESS } 
-        - { path: ^/api/login, roles: PUBLIC_ACCESS }
-        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }  
+
 when@test:
     security:
         password_hashers:
