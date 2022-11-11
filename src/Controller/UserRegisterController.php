@@ -14,7 +14,7 @@ use App\Repository\UserRepository;
 
 class UserRegisterController extends AbstractController
 {
-    #[Route('/registeruser', name: 'app_user_register', methods: ["POST"])]
+    #[Route('/registeruser', name: 'app_user_register', methods: ["GET"])]
     public function userRegister(Request $request): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
