@@ -15,7 +15,6 @@ class SalidaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('comentario')
             ->add('locacion', ChoiceType::class, [
                 'required' => true,
                 'multiple' => false,
@@ -23,10 +22,11 @@ class SalidaType extends AbstractType
                 'placeholder' => 'Elige una opción',
                 'choices'  => [
                     'Talent Garden - Madrid' => 'Madrid',
-                    'Barcelona' => 'Barcelona',
+                    'Factoría F5 - Barcelona' => 'Barcelona',
                     'Teletrabajo' => 'Teletrabajo'
                 ],
             ])
+            ->add('comentario')
             ->add('INICIAR', SubmitType::class);
 
         $builder->get('locacion')

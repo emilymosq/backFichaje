@@ -23,7 +23,7 @@ class EntradaType extends AbstractType
                 'placeholder' => 'Elige una opción',
                 'choices'  => [
                     'Talent Garden - Madrid' => 'Madrid',
-                    'Barcelona' => 'Barcelona',
+                    'Factoría F5 - Barcelona' => 'Barcelona',
                     'Teletrabajo' => 'Teletrabajo'
                 ],
             ])

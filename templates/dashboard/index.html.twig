@@ -8,7 +8,8 @@
 Hola {{ app.user.firstName }}
 <a href="{{ path('app_registro') }}"><button>Registro usuario</button></a>
 <a href="{{ path('app_logout') }}"><button>Logout</button></a>
-
+<a href="{{ path('app_entrada') }}"><button>Iniciar Fichaje</button></a>
+<a href="{{ path('app_salida') }}"><button>Finalizar</button></a>
     <div class="container">
         <div class="row">
             <div class="col-md-8 cursor">
@@ -17,8 +18,20 @@ Hola {{ app.user.firstName }}
                     <div class="d-flex bd-highlight">
                         <div class="p-2 flex-grow-1 bd-highlight">
                             <h3>{{entrada.comentario}}</h3>
-                            <div class="bg-yellow"> <i class="fa fa-user"></i><strong> Fichaje de {{entrada.firstname}}</strong></div>
+                            <div class="bg-yellow"> <i class="fa fa-user"></i><strong> Fichaje de entrada de {{entrada.firstname}}</strong></div>
                             <div class=" bg-green"><i class="far fa-clock"></i> <strong>Fecha: {{ entrada.fecha_publicacion | date }}
+                         </strong></div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                                {% for salida in pagination %}
+
+                    <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <h3>{{salida.comentario}}</h3>
+                            <div class="bg-yellow"> <i class="fa fa-user"></i><strong> Fichaje de salida de {{salida.firstname}}</strong></div>
+                            <div class=" bg-green"><i class="far fa-clock"></i> <strong>Fecha: {{ salida.fecha_publicacion | date }}
                          </strong></div>
                         </div>
                     </div>
