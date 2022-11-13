@@ -34,9 +34,9 @@ class RegistroController extends AbstractController
             $em->flush();
 
             $this->addFlash('exito', User::REGISTRO_EXITOSO);
-            $enviando = $SendEmail->sendEmail($mailer, $user);
-            dump($enviando);
-            die;
+            //$enviando = $SendEmail->sendEmail($mailer, $user);
+            //dump($enviando);
+            //die;
             /*
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,

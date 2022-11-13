@@ -46,6 +46,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'signoutuser', targetEntity: SignOut::class)]
     private Collection $usersignout;
 
+    #[ORM\OneToMany(targetEntity: Entrada::class, mappedBy: 'user')]
+    private $entrada;
+
+    #[ORM\OneToMany(targetEntity: Salida::class, mappedBy: 'user')]
+    private $salida;
+
     public function __construct()
     {
         $this->usersignin = new ArrayCollection();
