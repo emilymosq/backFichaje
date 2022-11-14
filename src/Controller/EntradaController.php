@@ -34,7 +34,7 @@ class EntradaController extends AbstractController
     /**
      * @Route("/entrada/{id}", name="VerEntrada")
      */
-    #[Route('/entrada/{id}', name: 'VerEntrada')]
+    #[Route('/entrada/{id}', name: 'verEntrada')]
     public function VerEntrada($id, Request $request, ManagerRegistry $doctrine)
     {
         $em = $doctrine->getManager();
@@ -47,7 +47,7 @@ class EntradaController extends AbstractController
     {
         $em = $doctrine->getManager();
         $user = $this->getUser();
-        $entradas = $em->getRepository(Posts::class)->findBy(['user' => $user]);
-        return $this->render('posts/misEntradas.html.twig', ['entradas' => $entradas]);
+        $entradas = $em->getRepository(Entrada::class)->findBy(['user' => $user]);
+        return $this->render('entrada/misEntradas.html.twig', ['entradas' => $entradas]);
     }
 }

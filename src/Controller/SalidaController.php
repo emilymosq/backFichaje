@@ -30,4 +30,21 @@ class SalidaController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    #[Route('/salida/{id}', name: 'verSalida')]
+    public function VerSalida($id, Request $request, ManagerRegistry $doctrine)
+    {
+        $em = $doctrine->getManager();
+        $salida = $em->getRepository(Salida::class)->find($id);
+        return $this->render('salida/verSalida.html.twig', ['salida' => $salida]);
+    }
+
+    #[Route('/mis-salidas', name: 'misSalidas')]
+    public function MisSalidas(ManagerRegistry $doctrine)
+    {
+        $em = $doctrine->getManager();
+        $user = $this->getUser();
+        $salidas = $em->getRepository(Salida::class)->findBy(['user' => $user]);
+        return $this->render('salida/misSalidas.html.twig', ['salidas' => $salidas]);
+    }
 }

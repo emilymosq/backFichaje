@@ -24,7 +24,7 @@
 }
 
 body {
-    background-image: url("../img/UI.png");
+    background-color: #EB5629;
     background-size: cover;
     height: 500px;
     font-family: signikaregular;
@@ -43,7 +43,7 @@ h6 {
 }
 
 .navbar {
-    background-image: linear-gradient(to right, #000072 20%, #6060cd 100%) !important;
+    background-color: #EB5629 !important;
     font-family: signikabold;
     font-size: 1.5em;
 }
@@ -55,7 +55,7 @@ h6 {
 }
 
 .nav-link {
-    color: #b6c6ff !important;
+    color: #ffffff !important;
     padding: 20px !important;
 }
 
@@ -75,8 +75,9 @@ h6 {
     cursor: pointer;
 }
 
-#cat {
-    height: 150px;
+#logo {
+    height: 200px;
+    padding: 30px;
 }
 
 #catwhite {
