@@ -16,30 +16,10 @@ class SalidaType extends AbstractType
     {
         $builder
             ->add('locacion', ChoiceType::class, [
-                'required' => true,
-                'multiple' => false,
-                'expanded' => false,
-                'placeholder' => 'Elige una opción',
-                'choices'  => [
-                    'Talent Garden - Madrid' => 'Madrid',
-                    'Factoría F5 - Barcelona' => 'Barcelona',
-                    'Teletrabajo' => 'Teletrabajo'
-                ],
+                'choices'  => Salida::TYPES
             ])
             ->add('comentario')
             ->add('INICIAR', SubmitType::class);
-
-        $builder->get('locacion')
-            ->addModelTransformer(new CallbackTransformer(
-                function ($locacionArray) {
-                    // transform the array to a string
-                    return count($locacionArray) ? $locacionArray[0] : null;
-                },
-                function ($locacionString) {
-                    // transform the string back to an array
-                    return [$locacionString];
-                }
-            ));
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -11,6 +11,13 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: EntradaRepository::class)]
 class Entrada
 {
+
+    const TYPES = [
+        'Talent Garden - Madrid' => 'Madrid',
+        'Factoría F5 - Barcelona' => 'Barcelona',
+        'Teletrabajo' => 'Teletrabajo'
+    ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -22,8 +29,8 @@ class Entrada
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $comentario = null;
 
-    #[ORM\Column]
-    private array $locacion = [];
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $locacion = null;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'entrada')]
     private $user;
@@ -65,12 +72,12 @@ class Entrada
         return $this;
     }
 
-    public function getLocacion(): array
+    public function getLocacion(): ?string
     {
         return $this->locacion;
     }
 
-    public function setLocacion(array $locacion): self
+    public function setLocacion(?string $locacion): self
     {
         $this->locacion = $locacion;
 
