@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+<div class="row h-100 justify-content-center align-items-center">
+    <div class="col-8 bg-white rounded my-3 p-5">
+    <center><h1 id="titulo">Listado</h1></center>
+
+    <table class="table container h-80">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Horas Semanales</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.horasSemanales }}</td>
+                <td>
+                    {#<a href="{{ path('app_crud_show', {'id': user.id}) }}">show</a>#}
+                    <button class="btn btn-sm btn-primary" type="submit"><a class="btn-link" href="{{ path('app_crud_edit', {'id': user.id}) }}">editar horas</a></button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+
+    {#<a href="{{ path('app_crud_new') }}">Create new</a>#}
+{% endblock %}

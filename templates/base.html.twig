@@ -25,14 +25,8 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('app_entrada') }}">Fichaje Entrada</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('misEntradas') }}">Mis Entradas</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('app_salida') }}">Fichaje Salida</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('misSalidas') }}">Mis Salidas</a>
@@ -41,12 +35,14 @@
                             <a class="nav-link" href="{{ path('app_registro') }}">Registro</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                            <a class="nav-link" href="{{ path('app_crud_index') }}">Listado</a>
                         </li>
                         <li class="nav-item">
-                            Hola {{ app.user.firstName }}
+                            <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
                         </li>
                     </ul>
+                    <p class="nav-link" style="float: right">
+                    Hola {{ app.user.firstName }}</p>
                 </div>
             </nav>
         {% endblock %}
