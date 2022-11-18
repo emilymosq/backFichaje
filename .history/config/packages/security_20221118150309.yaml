@@ -19,19 +19,20 @@ security:
             stateless: true
             json_login:
                 check_path: /api/login_check #defined in config/routes.yaml
-                # username_path: email
-                # password_path: password
-                # success_handler: lexik_jwt_authentication.handler.authentication_success
-                # failure_handler: lexik_jwt_authentication.handler.authentication_failure       
+                username_path: email
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure       
         
         api_entrada:
             pattern: ^/api/entrada
             stateless: true
-            jwt: ~
-                # username_path: email
-                # password_path: password
-                # success_handler: lexik_jwt_authentication.handler.authentication_success
-                # failure_handler: lexik_jwt_authentication.handler.authentication_failure       
+            json_entrada:
+                check_path: /api/entrada #defined in config/routes.yaml
+                username_path: email
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure       
         
         api:
             pattern: ^/api

@@ -37,6 +37,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 100)]
     private ?string $lastname = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $horasSemanales = null;
+
     #[ORM\Column]
     private ?bool $active = null;
 
@@ -239,6 +242,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $usersignout->setSignoutuser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getHorasSemanales(): ?string
+    {
+        return $this->horasSemanales;
+    }
+
+    public function setHorasSemanales(string $horasSemanales): self
+    {
+        $this->horasSemanales = $horasSemanales;
 
         return $this;
     }

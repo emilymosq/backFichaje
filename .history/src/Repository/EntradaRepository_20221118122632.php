@@ -31,8 +31,6 @@ class EntradaRepository extends ServiceEntityRepository
             ');
     }
 
-    
-
     public function save(Entrada $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

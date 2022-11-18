@@ -27,7 +27,9 @@ security:
         api_entrada:
             pattern: ^/api/entrada
             stateless: true
-            jwt: ~
+            json_entrada:
+                check_path: /api/entrada #defined in config/routes.yaml
+                
                 # username_path: email
                 # password_path: password
                 # success_handler: lexik_jwt_authentication.handler.authentication_success

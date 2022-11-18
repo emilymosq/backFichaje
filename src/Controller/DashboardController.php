@@ -21,6 +21,7 @@ class DashboardController extends AbstractController
         if ($user) {
             $em = $doctrine->getManager();
             $query = $em->getRepository(Entrada::class)->BuscarTodasLasEntradas();
+            $query = $em->getRepository(Salida::class)->BuscarTodasLasSalidas();
             $pagination = $paginator->paginate(
                 $query, /* query NOT result */
                 $request->query->getInt('page', 1), /*page number*/
