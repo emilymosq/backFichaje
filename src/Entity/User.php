@@ -12,6 +12,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    const REGISTRO_EXITOSO = 'Se ha registrado exitosamente';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -43,6 +45,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'signoutuser', targetEntity: SignOut::class)]
     private Collection $usersignout;
+
+    #[ORM\OneToMany(targetEntity: Entrada::class, mappedBy: 'user')]
+    private $entrada;
+
+    #[ORM\OneToMany(targetEntity: Salida::class, mappedBy: 'user')]
+    private $salida;
 
     public function __construct()
     {

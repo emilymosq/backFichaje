@@ -1,14 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DashboardControllerrr!{% endblock %}
+{% block title %}
+{{parent()}} - Dashboard
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    {{ parent() }}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 cursor">
+            {% for entrada in pagination %}
+                <div class="bg-white rounded p-3 my-3"  onclick="window.location.href='{{ path('VerEntrada',{id:entrada.id}) }}'">
+                    <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <h3>Fichaje de Entrada de {{entrada.firstname}}</h3>
+                            <div class="bg-yellow"> <i class="fa fa-user"></i><strong> Sede {{entrada.locacion}}</strong></div>
+                            <div class=" bg-green"><i class="far fa-clock"></i> <strong>Fecha: {{ entrada.fecha_publicacion | date }}</strong></div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-</div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+
 {% endblock %}
