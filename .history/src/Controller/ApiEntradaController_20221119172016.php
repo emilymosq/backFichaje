@@ -28,7 +28,10 @@ class ApiEntradaController extends AbstractController
         $comentario = $data['comentario'];
         $locacion = $data['locacion'];
         $user = $data['user']; 
-        dump($this->entradaRepository);die;
+       
+        // $email = $data['user']['email'];
+        // $roles = $data['user']['roles'];
+        dump($this);die;
         $this->entradaRepository->save($fecha_publicacion, $comentario, $locacion, $user);
         
         return new JsonResponse(['status' => 'Fichaje creado'], Response::HTTP_CREATED);

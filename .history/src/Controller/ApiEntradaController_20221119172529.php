@@ -20,7 +20,7 @@ class ApiEntradaController extends AbstractController
     }
 
     #[Route('/api/entrada', name: 'app_api_entrada',  methods: ['POST'])]
-    public function crear(Request $request, ManagerRegistry $doctrine): JsonResponse
+    public function crear(Request $request, ManagerRegistry $doctrine, EntradaRepository $entradaRepository): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
 
@@ -28,6 +28,9 @@ class ApiEntradaController extends AbstractController
         $comentario = $data['comentario'];
         $locacion = $data['locacion'];
         $user = $data['user']; 
+       
+        // $email = $data['user']['email'];
+        // $roles = $data['user']['roles'];
         dump($this->entradaRepository);die;
         $this->entradaRepository->save($fecha_publicacion, $comentario, $locacion, $user);
         

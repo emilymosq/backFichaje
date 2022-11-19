@@ -22,29 +22,32 @@ class ApiEntradaController extends AbstractController
     #[Route('/api/entrada', name: 'app_api_entrada',  methods: ['POST'])]
     public function crear(Request $request, ManagerRegistry $doctrine): JsonResponse
     {
-        $data = json_decode($request->getContent(), true);
+        // $data = json_decode($request->getContent(), true);
 
-        $fecha_publicacion = $data['fecha_publicacion'];
-        $comentario = $data['comentario'];
-        $locacion = $data['locacion'];
-        $user = $data['user']; 
-        dump($this->entradaRepository);die;
-        $this->entradaRepository->save($fecha_publicacion, $comentario, $locacion, $user);
+        // $fecha_publicacion = $data['fecha_publicacion'];
+        // $comentario = $data['comentario'];
+        // $locacion = $data['locacion'];
+        // $user = $data['user']['id']; 
         
-        return new JsonResponse(['status' => 'Fichaje creado'], Response::HTTP_CREATED);
+        // $email = $data['user']['email'];
+        // $roles = $data['user']['roles'];
+
+        // $this->entradaRepository->saveEntrada($fecha_publicacion, $comentario, $locacion, $user);
         
-        // $entrada = new Entrada();
-        // $entrada->setFechaPublicacion($entrada->$request->get('fecha_publicacion'));
-        // $entrada->setComentario($entrada->$request->get('comentario'));
-        // $entrada->setLocacion($entrada->$request->get('locacion'));
-        // $user = $this->getUser();
-        // $entrada->setUser($user->$request->get('user'));
+        // return new JsonResponse(['status' => 'Fichaje creado'], Response::HTTP_CREATED);
+        
+        $entrada = new Entrada();
+        $entrada->setFechaPublicacion($entrada->$request->get('fecha_publicacion'));
+        $entrada->setComentario($entrada->$request->get('comentario'));
+        $entrada->setLocacion($entrada->$request->get('locacion'));
+        $user = $this->getUser();
+        $entrada->setUser($user->$request->get('user'));
 
-        // $em = $doctrine->getManager();
-        // $em->persist($entrada);
-        // $em->flush();
+        $em = $doctrine->getManager();
+        $em->persist($entrada);
+        $em->flush();
 
-        // return $this->json('Ha fichado exitosamente ' . $entrada->getId());
+        return $this->json('Ha fichado exitosamente ' . $entrada->getId());
     }
 
     // /**

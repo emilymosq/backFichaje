@@ -27,9 +27,10 @@ class ApiEntradaController extends AbstractController
         $fecha_publicacion = $data['fecha_publicacion'];
         $comentario = $data['comentario'];
         $locacion = $data['locacion'];
-        $user = $data['user']; 
-        dump($this->entradaRepository);die;
-        $this->entradaRepository->save($fecha_publicacion, $comentario, $locacion, $user);
+        $email = $data['user']['email'];
+        $roles = $data['user']['roles'];
+
+        $this->entradaRepository->saveEntrada($fecha_publicacion, $comentario, $locacion, $email, $roles);
         
         return new JsonResponse(['status' => 'Fichaje creado'], Response::HTTP_CREATED);
         
@@ -44,7 +45,7 @@ class ApiEntradaController extends AbstractController
         // $em->persist($entrada);
         // $em->flush();
 
-        // return $this->json('Ha fichado exitosamente ' . $entrada->getId());
+       //  return $this->json('Ha fichado exitosamente ' . $entrada->getId());
     }
 
     // /**

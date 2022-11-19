@@ -28,6 +28,9 @@ class ApiEntradaController extends AbstractController
         $comentario = $data['comentario'];
         $locacion = $data['locacion'];
         $user = $data['user']; 
+       
+        // $email = $data['user']['email'];
+        // $roles = $data['user']['roles'];
         dump($this->entradaRepository);die;
         $this->entradaRepository->save($fecha_publicacion, $comentario, $locacion, $user);
         
