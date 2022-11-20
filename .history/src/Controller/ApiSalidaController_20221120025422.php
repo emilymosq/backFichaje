@@ -29,6 +29,7 @@ class ApiSalidaController extends AbstractController
         $fecha_publicacion = $data['fecha_publicacion'];
         $comentario = $data['comentario'];
         $locacion = $data['locacion'];
+        $user = $data['user']; 
     
         $salida = new Salida();
         $fecha_formato = \DateTime::createFromFormat('d/m/Y H:i:s', $fecha_publicacion);

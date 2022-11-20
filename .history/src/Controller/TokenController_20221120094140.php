@@ -52,8 +52,8 @@ class TokenController extends AbstractController
         $response->headers->set('userId', $user->getId());
         $response->headers->setCookie(new Cookie('Authorization', $token));
         $response->headers->setCookie(new Cookie('BEARER', $token));
-        // dump($response);
-        // die;
+        dump($response);
+        die;
         return $response;
     }
 }

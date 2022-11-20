@@ -21,7 +21,7 @@ use Symfony\Component\Security\Http\Attribute\CurrentUser;
 class TokenController extends AbstractController
 {
 
-    #[Route('/token', name: 'app_token', methods:['GET'])]
+    #[Route('/token', name: 'app_token', methods:['POST'])]
     public function index(Request $request, UserRepository $userRepository): Response
     {
 
@@ -52,8 +52,8 @@ class TokenController extends AbstractController
         $response->headers->set('userId', $user->getId());
         $response->headers->setCookie(new Cookie('Authorization', $token));
         $response->headers->setCookie(new Cookie('BEARER', $token));
-        // dump($response);
-        // die;
+        dump($response);
+        die;
         return $response;
     }
 }
