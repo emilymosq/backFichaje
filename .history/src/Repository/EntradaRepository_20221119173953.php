@@ -52,17 +52,12 @@ class EntradaRepository extends ServiceEntityRepository
             ->setLocacion($locacion)
             ->setUser($user);
 
-        $this->manager->persist($newEntrada);
-        $this->manager->flush();
-    }
-
     //     $this->getEntityManager()->persist($entity);
     //     if ($flush) {
     //         $this->getEntityManager()->flush();
     //     }
     // 
-    
-
+    }
 
     public function remove(Entrada $entity, bool $flush = false): void
     {

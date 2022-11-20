@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Entrada;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,7 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class EntradaRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Entrada::class);
     }
@@ -43,7 +42,7 @@ class EntradaRepository extends ServiceEntityRepository
         }
     }
 
-    public function saveEntrada($fecha, $comentario, $locacion, $user)
+    public function saveEntrada()
     {
         $newEntrada = new Entrada();
         $newEntrada
@@ -52,17 +51,11 @@ class EntradaRepository extends ServiceEntityRepository
             ->setLocacion($locacion)
             ->setUser($user);
 
-        $this->manager->persist($newEntrada);
-        $this->manager->flush();
+        $this->getEntityManager()->persist($entity);
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
     }
-
-    //     $this->getEntityManager()->persist($entity);
-    //     if ($flush) {
-    //         $this->getEntityManager()->flush();
-    //     }
-    // 
-    
-
 
     public function remove(Entrada $entity, bool $flush = false): void
     {

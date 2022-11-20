@@ -22,7 +22,18 @@ class ApiEntradaController extends AbstractController
 
     #[Route('/api/entrada', name: 'app_api_entrada',  methods: ['POST'])]
     public function crear(Request $request, ManagerRegistry $doctrine): JsonResponse
-    {   
+    { 
+        //$data = json_decode($request->getContent(), true);
+
+        // $fecha_publicacion = $data['fecha_publicacion'];
+        // $comentario = $data['comentario'];
+        // $locacion = $data['locacion'];
+        // $user = $data['user']; 
+        // //dump($this->entradaRepository);die;
+        // $this->entradaRepository->saveEntrada($fecha_publicacion, $comentario, $locacion, $user);
+        
+        // return new JsonResponse(['status' => 'Fichaje creado'], Response::HTTP_CREATED);
+        
         $data = json_decode($request->getContent(), true);
         
         $fecha_publicacion = $data['fecha_publicacion'];
@@ -31,13 +42,20 @@ class ApiEntradaController extends AbstractController
         $user = $data['user']; 
     
         $entrada = new Entrada();
-        $fecha_formato = \DateTime::createFromFormat('d/m/Y H:i:s', $fecha_publicacion);
-        //dump($fecha_formato);die;
-        $entrada->setFechaPublicacion($fecha_formato);
+        $fecha_limpia = trim($fecha_publicacion, '"');
+        $fecha_formato = \DateTime::createFromFormat("d/m/y h:m:s", $fecha_limpia);
+        dump($fecha_formato);die;
+        $entrada->setFechaPublicacion($fecha_publicacion);
         $entrada->setComentario($comentario);
         $entrada->setLocacion($locacion);
+        $entrada->setUser($user);
         
-        $entrada->setUser($this->getUser());
+
+        // $entrada->setFechaPublicacion($entrada->$request->get('fecha_publicacion'));
+        // $entrada->setComentario($entrada->$request->get('comentario'));
+        // $entrada->setLocacion($entrada->$request->get('locacion'));
+        // $user = $this->getUser();
+        // $entrada->setUser($user->$request->get('user'));
 
         $em = $doctrine->getManager();
         $em->persist($entrada);
@@ -54,6 +72,5 @@ class ApiEntradaController extends AbstractController
     // {
     //     $em = $doctrine->getManager();
     //     $entrada = $em->getRepository(Entrada::class)->find($id);
-    //     return ['entrada' => $entrada];
-    // } 
+    //     return $this->render('entrada/verEntrada.html.twig', ['entrada' => $entrada]);
 }
