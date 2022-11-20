@@ -43,7 +43,7 @@ class ApiEntradaController extends AbstractController
         $em->persist($entrada);
         $em->flush();
 
-        return $this->json('Ha fichado exitosamente', $status = 200, $headers = ['Access-Control-Allow-Origin'=>'*', 'Access-Control-Allow-Methods'=> 'POST,OPTIONS']);
+        return $this->json($entrada, $status = 200, $headers = ['Access-Control-Allow-Origin'=>'*', 'Access-Control-Allow-Methods'=> 'POST']);
         //return $this->json('Ha fichado exitosamente ' . $entrada->getId());
     }
 

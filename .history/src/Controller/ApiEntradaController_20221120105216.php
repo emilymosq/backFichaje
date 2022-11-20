@@ -38,13 +38,14 @@ class ApiEntradaController extends AbstractController
         $entrada->setLocacion($locacion);
         
         $entrada->setUser($this->getUser());
+        $entrada->headers->set('Content-Type', 'application/json');
+        $entrada->headers->set('Access-Control-Allow-Origin', '*');
 
         $em = $doctrine->getManager();
         $em->persist($entrada);
         $em->flush();
 
-        return $this->json('Ha fichado exitosamente', $status = 200, $headers = ['Access-Control-Allow-Origin'=>'*', 'Access-Control-Allow-Methods'=> 'POST,OPTIONS']);
-        //return $this->json('Ha fichado exitosamente ' . $entrada->getId());
+        return $this->json('Ha fichado exitosamente ' . $entrada->getId());
     }
 
     // /**
