@@ -3,20 +3,13 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\Persistence\ManagerRegistry;
-
-
-use App\Entity\Salida;
-use App\Repository\SalidaRepository;
 
 class ApiSalidaController extends AbstractController
 {
 
-    public function __controller(SalidaRepository $salidaRepository) 
+    public function __controller(SalidaRepository $entradaRepository) 
     {
         $this->salidaRepository = $salidaRepository;
     }

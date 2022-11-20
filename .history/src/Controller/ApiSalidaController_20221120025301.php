@@ -16,7 +16,7 @@ use App\Repository\SalidaRepository;
 class ApiSalidaController extends AbstractController
 {
 
-    public function __controller(SalidaRepository $salidaRepository) 
+    public function __controller(SalidaRepository $entradaRepository) 
     {
         $this->salidaRepository = $salidaRepository;
     }
