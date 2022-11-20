@@ -6,6 +6,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
+            <h3>Mis Entradas</h3>
+                {% for entrada in entradas %}
+                    <div class="bg-white rounded p-3 my-3" onclick="window.location.href='{{ path('verEntrada',{id:entrada.id}) }}'" style="cursor: pointer">
+                        <h3>{{ entrada.user.firstName }}</h3>
+                        <div class="my-3 bg-yellow"> <i class="fa fa-user"></i><strong> Fichaje de Entrada</strong></div>
+                        <div class=" bg-green"><i class="far fa-clock"></i><strong> Fecha: {{ entrada.fechaPublicacion | date }} </strong></div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+            <h3>Mis Entradas</h3>
                 {% for entrada in entradas %}
                     <div class="bg-white rounded p-3 my-3" onclick="window.location.href='{{ path('verEntrada',{id:entrada.id}) }}'" style="cursor: pointer">
                         <h3>{{ entrada.user.firstName }}</h3>

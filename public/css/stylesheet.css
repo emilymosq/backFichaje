@@ -1,15 +1,15 @@
 @font-face {
     font-family: 'signikabold';
-    src: url('../fonts/signika-bold-webfont.woff2') format('woff2'),
-        url('../fonts/signika-bold-webfont.woff') format('woff');
+    src: url('../fonts/MADEOkineSansMedium.woff2') format('woff2'),
+        url('../fonts/MADEOkineSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'signikaregular';
-    src: url('../fonts/signika-regular-webfont.woff2') format('woff2'),
-        url('../fonts/signika-regular-webfont.woff') format('woff');
+    src: url('../fonts/MADEOkineSansRegular.woff2') format('woff2'),
+        url('../fonts/MADEOkineSansRegular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -39,7 +39,7 @@ h4,
 h5,
 h6 {
     font-family: signikabold;
-    color: #464d78;
+    color: #3821AB;
 }
 
 .navbar {
@@ -62,13 +62,11 @@ h6 {
 .fa-user,
 .bg-yellow {
     color: #7190ff;
-    font-size: 1.3em;
 }
 
 .fa-clock,
 .bg-green {
     color: #5957a1;
-    font-size: 1.3em;
 }
 
 .cursor:hover {
