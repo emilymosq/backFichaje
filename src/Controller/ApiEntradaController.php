@@ -36,7 +36,6 @@ class ApiEntradaController extends AbstractController
         //$fecha_formato = \DateTime::createFromFormat('d/m/Y, H:i:s', $fecha_publicacion);
         //dump($fecha_formato);die;
         $datetime = \DateTime::createFromFormat('d-m-Y H:i:s', $fecha_publicacion);
-        dump($datetime);die;
         //11/21/2022, 12:02:09 PM
         //$dtime = DateTime::createFromFormat("d/m/Y H:i:s", $fecha_publicacion);
         //$timestamp = \Datetime::createFromFormat("Y/m/d H:i:s", $fecha_publicacion);

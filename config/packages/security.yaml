@@ -24,6 +24,15 @@ security:
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure       
         
+        api_salida:
+            pattern: ^/api/salida
+            stateless: true
+            jwt: ~
+                # username_path: email
+                # password_path: password
+                # success_handler: lexik_jwt_authentication.handler.authentication_success
+                # failure_handler: lexik_jwt_authentication.handler.authentication_failure  
+
         api_entrada:
             pattern: ^/api/entrada
             stateless: true
@@ -31,7 +40,7 @@ security:
                 # username_path: email
                 # password_path: password
                 # success_handler: lexik_jwt_authentication.handler.authentication_success
-                # failure_handler: lexik_jwt_authentication.handler.authentication_failure       
+                # failure_handler: lexik_jwt_authentication.handler.authentication_failure                    
         
         api:
             pattern: ^/api

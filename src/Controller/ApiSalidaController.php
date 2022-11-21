@@ -31,9 +31,10 @@ class ApiSalidaController extends AbstractController
         $locacion = $data['locacion'];
     
         $salida = new Salida();
-        $fecha_formato = \DateTime::createFromFormat('d/m/Y H:i:s', $fecha_publicacion);
-        //dump($fecha_formato);die;
-        $salida->setFechaPublicacion($fecha_formato);
+        
+        $datetime = \DateTime::createFromFormat('d-m-Y H:i:s', $fecha_publicacion);
+        
+        $salida->setFechaPublicacion($datetime);
         $salida->setComentario($comentario);
         $salida->setLocacion($locacion);
         
@@ -43,6 +44,6 @@ class ApiSalidaController extends AbstractController
         $em->persist($salida);
         $em->flush();
 
-        return $this->json('Ha fichado exitosamente ' . $salida->getId());
+        return $this->json('Ha fichado exitosamente', $status = 200, $headers = ['Access-Control-Allow-Origin'=>'*', 'Access-Control-Allow-Methods'=> 'POST,OPTIONS']);
     }
 }
