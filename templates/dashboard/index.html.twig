@@ -6,45 +6,60 @@
 
 {% block body %}
     {{ parent() }}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 cursor">
-            <center><button class="btn btn-lg btn-success" type="submit"><a class="nav-link" href="{{ path('app_entrada') }}">Fichaje Entrada</a></button></center>
-            {% for entrada in pagination %}
-                <div class="bg-white rounded p-3 my-3"  onclick="window.location.href='{{ path('VerEntrada',{id:entrada.id}) }}'">
-                    <div class="d-flex bd-highlight">
-                        <div class="p-2 flex-grow-1 bd-highlight">
-                            <h4>Fichaje de Entrada de {{entrada.firstname}}</h4>
-                            <div class="bg-yellow"> <i class="fa fa-user"></i><strong> Sede {{entrada.locacion}}</strong></div>
-                            <div class=" bg-green"><i class="far fa-clock"></i>Fecha: {{ entrada.fecha_publicacion | date }}</div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
 
-            </div>
-            <div class="col-md-6 cursor">
-            <center><button class="btn btn-lg btn-primary" type="submit"><a class="nav-link" href="{{ path('app_salida') }}">Fichaje Salida</a></button></center>
-            {% for salida in pagination %}
-                <div class="bg-white rounded p-3 my-3"  onclick="window.location.href='{{ path('verSalida',{id:salida.id}) }}'">
-                    <div class="d-flex bd-highlight">
-                        <div class="p-2 flex-grow-1 bd-highlight">
-                            <h4>Fichaje de Salida de {{salida.firstname}}</h4>
-                            <div class="bg-yellow"> <i class="fa fa-user"></i><strong> Sede {{salida.locacion}}</strong></div>
-                            <div class=" bg-green"><i class="far fa-clock"></i>Fecha: {{ salida.fecha_publicacion | date }}</div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
+    <div class="container col-md-8">
+
+
+            <center>
+            <div class="col-md-8 cursor" style="display: inline-block">
+            <div class=" rounded p-3 my-3">
+            <p class="nav-usuario">¡Hola {{ app.user.firstName }}!</p>
+<p class="nav-usuario" style="text-align: center">
+<script type="text/javascript">
+//<![CDATA[
+var date = new Date();
+var d  = date.getDate();
+var day = (d < 10) ? '0' + d : d;
+var m = date.getMonth() + 1;
+var month = (m < 10) ? '0' + m : m;
+var yy = date.getYear();
+var year = (yy < 1000) ? yy + 1900 : yy;
+document.write(day + "/" + month + "/" + year);
+//]]>
+</script></p>
+
+<div id="reloj" style="font-size:45px; color: white; margin: 0 20px 0 0">
+<script type="text/javascript">
+function startTime(){
+today=new Date();
+h=today.getHours();
+m=today.getMinutes();
+s=today.getSeconds();
+m=checkTime(m);
+s=checkTime(s);
+document.getElementById('reloj').innerHTML=h+":"+m+":"+s;
+t=setTimeout('startTime()',500);}
+function checkTime(i)
+{if (i<10) {i="0" + i;}return i;}
+window.onload=function(){startTime();}
+</script>
+</div>
+    </div>
+    </div>
+ 
+            <div class="col-md-4 cursor" style="display: inline-block">
+            <div class="bg-white rounded p-3 my-3">
+            <button class="btn btn-lg btn-success" type="submit" ><a class="btn-link" href="{{ path('app_entrada') }}">Fichaje Entrada</a></button>
+            </div></div>
+            <div class="col-md-4 cursor" style="display: inline-block">
+            <div class="bg-white rounded p-3 my-3">
+            <button class="btn btn-lg btn-primary" type="submit" style="padding: 8px 25px 8px 25px"><a class="btn-link" href="{{ path('app_salida') }}">Fichaje Salida</a></button></center>
+            
 
             </div>
             
         </div>
-    </div>
-    <div class="d-flex justify-content-center">
-        <div class="navigation">
-            {{ knp_pagination_render(pagination) }}
-        </div>
+
     </div>
 
 {% endblock %}
