@@ -22,10 +22,17 @@ security:
                 username_path: email
                 password_path: password
                 success_handler: lexik_jwt_authentication.handler.authentication_success
-                failure_handler: lexik_jwt_authentication.handler.authentication_failure      
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure       
         
-
-                
+        api_entrada:
+            pattern: ^/api/entrada
+            stateless: true
+            jwt: ~
+                # username_path: email
+                # password_path: password
+                # success_handler: lexik_jwt_authentication.handler.authentication_success
+                # failure_handler: lexik_jwt_authentication.handler.authentication_failure       
+        
         api:
             pattern: ^/api
             stateless: true
@@ -41,10 +48,6 @@ security:
             logout:
                 path: app_logout
             entry_point: 'form_login'
-
-        api_entrada:
-            pattern: ^/api/entrada
-            stateless: true
         
 
     # Easy way to control access for large sections of your site
@@ -55,7 +58,7 @@ security:
         - { path: ^/registro, roles: PUBLIC_ACCESS } 
         - { path: ^/api/entrada, roles: PUBLIC_ACCESS } 
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
-        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }  
+        # - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }  
 when@test:
     security:
         password_hashers:
