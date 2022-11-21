@@ -33,21 +33,12 @@ class ApiEntradaController extends AbstractController
     
         $entrada = new Entrada();
         //$fecha_formato = \DateTime::createFromInterface($fecha_publicacion);
-        //$fecha_formato = \DateTime::createFromFormat('d/m/Y, H:i:s', $fecha_publicacion);
+        //$fecha_formato = \DateTime::createFromFormat('d/m/Y H:i:s', $fecha_publicacion);
         //dump($fecha_formato);die;
-        $datetime = \DateTime::createFromFormat('d-m-Y H:i:s', $fecha_publicacion);
-        dump($datetime);die;
-        //11/21/2022, 12:02:09 PM
-        //$dtime = DateTime::createFromFormat("d/m/Y H:i:s", $fecha_publicacion);
-        //$timestamp = \Datetime::createFromFormat("Y/m/d H:i:s", $fecha_publicacion);
-        //$fecha_formato = $datetime->createFromFormat('d/m/Y H:i:s', $fecha_publicacion);
-        //dump($fecha_formato);die;
-
-        //$fecha_formato = DateTime::createFromFormat('d/m/Y H:i:s',$fecha_publicacion);
         
+        $fecha_formato = \DateTimeInterface::createFromDate($fecha_publicacion);
         
-        //dump($entrada->setFechaPublicacion($datetime));die;
-        $entrada->setFechaPublicacion($datetime);
+        $entrada->setFechaPublicacion($fecha_formato);
         $entrada->setComentario($comentario);
         $entrada->setLocacion($locacion);
         
