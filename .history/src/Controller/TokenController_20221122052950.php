@@ -44,14 +44,14 @@ class TokenController extends AbstractController
         $response = new Response();
         $response->setContent(json_encode([
             'auth' => 'ok',
-            'userId' => $user->getId(),
-            'nombre' => $user->getFirstname()
+            'userId' => $user->getId()
+            //'nombre' => $user->getFirstname()
         ]));
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('pass', 'ok');
         $response->headers->set('userId', $user->getId());
-        $response->headers->set('nombre', $user->getFirstname());
+        //$response->headers->set('nombre', $user->getFirstname());
         $response->headers->setCookie(new Cookie('Authorization', $token));
         $response->headers->setCookie(new Cookie('BEARER', $token));
         // dump($response);

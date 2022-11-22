@@ -44,8 +44,7 @@ class TokenController extends AbstractController
         $response = new Response();
         $response->setContent(json_encode([
             'auth' => 'ok',
-            'userId' => $user->getId(),
-            'nombre' => $user->getFirstname()
+            'userId' => $user->getId()
         ]));
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
