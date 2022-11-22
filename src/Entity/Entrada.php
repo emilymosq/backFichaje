@@ -29,6 +29,9 @@ class Entrada
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $comentario = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $foto = null;
+
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $locacion = null;
 
@@ -68,6 +71,18 @@ class Entrada
     public function setComentario(?string $comentario): self
     {
         $this->comentario = $comentario;
+
+        return $this;
+    }
+
+    public function getFoto(): ?string
+    {
+        return $this->foto;
+    }
+
+    public function setFoto(string $foto): self
+    {
+        $this->foto = $foto;
 
         return $this;
     }

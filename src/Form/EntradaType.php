@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class EntradaType extends AbstractType
 {
@@ -19,6 +20,7 @@ class EntradaType extends AbstractType
                 'choices'  => Entrada::TYPES
             ])
             ->add('comentario')
+            ->add('foto', FileType::class, ['label' => 'Agrega un justificante (Opcional)', 'mapped' => false, 'required' => false])
             ->add('INICIAR', SubmitType::class);
     }
 

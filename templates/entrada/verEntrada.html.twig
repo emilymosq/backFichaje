@@ -21,5 +21,10 @@
         <div class="text-justify my-3">
             Comentario: {{ entrada.comentario }}
         </div>
+                        <div class="p-2 bd-highlight">
+                  <div class="align-self-center">
+                    <img class="rounded" src="{{ asset('uploads/photos/'~entrada.foto) }}" width="750px">
+                  </div>
+                </div>
       </div>
 {% endblock %}
