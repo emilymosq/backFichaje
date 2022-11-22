@@ -12,6 +12,7 @@
         "doctrine/orm": "^2.13",
         "knplabs/knp-paginator-bundle": "^5.9",
         "lexik/jwt-authentication-bundle": "^2.16",
+        "nelmio/cors-bundle": "^2.2",
         "sensio/framework-extra-bundle": "^6.2",
         "symfony/asset": "5.4.*",
         "symfony/console": "5.4.*",
@@ -78,6 +79,11 @@
         }
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.47"
+        "phpunit/phpunit": "^9.5",
+        "symfony/browser-kit": "5.4.*",
+        "symfony/css-selector": "5.4.*",
+        "symfony/maker-bundle": "^1.48",
+        "symfony/phpunit-bridge": "^6.1",
+        "symfony/stopwatch": "5.4.*"
     }
 }
