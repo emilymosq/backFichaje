@@ -34,13 +34,28 @@ class ApiEntradaController extends AbstractController
     
         $entrada = new Entrada();
 
+        
+        // $entrada->setUser($user);
+        //$fecha_formato = \DateTime::createFromInterface($fecha_publicacion);
+        //$fecha_formato = \DateTime::createFromFormat('d/m/Y, H:i:s', $fecha_publicacion);
+        //dump($fecha_formato);die;
         $datetime = \DateTime::createFromFormat('d-m-Y H:i:s', $fecha_publicacion);
         
+        //11/21/2022, 12:02:09 PM
+        //$dtime = DateTime::createFromFormat("d/m/Y H:i:s", $fecha_publicacion);
+        //$timestamp = \Datetime::createFromFormat("Y/m/d H:i:s", $fecha_publicacion);
+        //$fecha_formato = $datetime->createFromFormat('d/m/Y H:i:s', $fecha_publicacion);
+        //dump($fecha_formato);die;
 
+        //$fecha_formato = DateTime::createFromFormat('d/m/Y H:i:s',$fecha_publicacion);
+        
+        
+        //dump($entrada->setFechaPublicacion($datetime));die;
         $entrada->setFechaPublicacion($datetime);
         $entrada->setComentario($comentario);
         $entrada->setLocacion($locacion);
         
+        // $entrada->setUser($this->getUser());
 
 
         $em = $doctrine->getManager();
@@ -50,9 +65,15 @@ class ApiEntradaController extends AbstractController
         $em->flush();
 
         return $this->json('Ha fichado exitosamente', $status = 200, $headers = ['Access-Control-Allow-Origin'=>'*', 'Access-Control-Allow-Methods'=> 'POST,OPTIONS']);
+        //return $this->json('Ha fichado exitosamente ' . $entrada->getId());
     }
 
     public function getUsuario(int $id, ManagerRegistry $doctrine){
+        // $sql = "SELECT * FROM user WHERE id = ?";
+        // $stmt = $this->connect()->prepare($sql);
+        // $stmt->execute(array($id));
+
+        // $resultado = $stmt->fetch();
 
         $em = $doctrine->getManager();
         $usuario = $em->getRepository(User::class)->find($id);
