@@ -59,7 +59,41 @@ class ApiEntradaController extends AbstractController
         return $usuario;
 
     }
+    #[Route('/list', name: 'app_api_entrada',  methods: ['GET'])]
     
+    public function misEntradas(ManagerRegistry $doctrine, int $id, Request $request, EntradaRepository $entradaRepository): Response
+    {
+        $em = $doctrine->getManager();
+        $user = $em->getRepository(User::class)->find($id);
+        $entradas = $em->getRepository(Entrada::class)->findBy(['user' => $user]);
+        return $entradas;
+    }
+
+    /**
+    * @Route("/project", name="project_index", methods={"GET"})
+    */
+    public function index(ManagerRegistry $doctrine): Response
+    {
+        $products = $doctrine
+            ->getRepository(Project::class)
+            ->findAll();
+   
+        $data = [];
+   
+        foreach ($products as $product) {
+           $data[] = [
+               'id' => $product->getId(),
+               'name' => $product->getName(),
+               'description' => $product->getDescription(),
+           ];
+        }
+   
+   
+        return $this->json($data);
+    }
+
+
+
     // #[Route('/entrada/{id}', name: 'verEntrada')]
     // public function VerEntrada($id, Request $request, ManagerRegistry $doctrine)
     // {

@@ -59,7 +59,32 @@ class ApiEntradaController extends AbstractController
         return $usuario;
 
     }
-    
+    #[Route('/listaEntradas', name: 'listaEntradas')]
+    public function MisEntradas(ManagerRegistry $doctrine) : Response 
+    {
+        $em = $doctrine->getManager();
+        $user = $this->getUser();
+        $entradas = $em->getRepository(Entrada::class)->findBy(['user' => $user]);
+        
+        $data = [];
+        foreach ($products as $product) {
+                       $data[] = [
+                           'id' => $product->getId(),
+                           'name' => $product->getName(),
+                           'description' => $product->getDescription(),
+                       ];
+                    }
+               
+               
+                    return $this->json($data);
+
+        return $this->render('entrada/misEntradas.html.twig', ['entradas' => $entradas]);
+    }
+
+
+
+
+
     // #[Route('/entrada/{id}', name: 'verEntrada')]
     // public function VerEntrada($id, Request $request, ManagerRegistry $doctrine)
     // {
