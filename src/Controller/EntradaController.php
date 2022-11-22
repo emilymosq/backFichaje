@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
 
 class EntradaController extends AbstractController
 {
@@ -49,5 +50,25 @@ class EntradaController extends AbstractController
         $user = $this->getUser();
         $entradas = $em->getRepository(Entrada::class)->findBy(['user' => $user]);
         return $this->render('entrada/misEntradas.html.twig', ['entradas' => $entradas]);
+    }
+
+    #[Route('/todosentrada', name: 'todosEntrada')]
+    public function TodosEntrada(PaginatorInterface $paginator, Request $request, ManagerRegistry $doctrine)
+    {
+        $user = $this->getUser(); //OBTENGO AL USUARIO ACTUALMENTE LOGUEADO
+        if ($user) {
+            $em = $doctrine->getManager();
+            $query = $em->getRepository(Entrada::class)->BuscarTodasLasEntradas();
+            $pagination = $paginator->paginate(
+                $query, /* query NOT result */
+                $request->query->getInt('page', 1), /*page number*/
+                5 /*limit per page*/
+            );
+            return $this->render('entrada/todosentrada.html.twig', [
+                'pagination' => $pagination
+            ]);
+        } else {
+            return $this->redirectToRoute('app_login');
+        }
     }
 }

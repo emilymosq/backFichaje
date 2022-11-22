@@ -43,20 +43,34 @@ h6 {
 }
 
 .navbar {
-    background-color: #EB5629 !important;
-    font-family: signikabold;
-    font-size: 1.5em;
+    background-color: #ffffff !important;
+    font-family: signikaregular;
+    font-size: 1.2em;
 }
 
-.navbar-brand {
-    font-family: remachine_script_personal_uRg;
-    font-size: 2em;
-    color: #ffffff !important;
-}
 
 .nav-link {
-    color: #ffffff !important;
+    color: #3e3e3e !important;
     padding: 20px !important;
+}
+
+
+.nav-link:hover {
+    color: #EB5629 !important;
+}
+
+
+.nav-link {
+    color: #3e3e3e !important;
+    padding: 20px !important;
+}
+
+.nav-usuario {
+    color: #ffffff !important;
+    font-family: signikabold;
+    margin-top: 20px;
+    margin-right: 20px;
+    font-size: 2em;
 }
 
 .fa-user,
@@ -78,16 +92,18 @@ h6 {
     padding: 30px;
 }
 
-#catwhite {
-    height: 50px;
-}
-
 /*#titulo {
     padding: 20px !important;
 }*/
 
 .btn {
     margin: 5px !important;
+}
+
+.btn-link {
+    color: #ffffff !important;
+    font-family: signikabold;
+    font-size: 1.5em;
 }
 
 #registrate {

@@ -19,19 +19,12 @@ class DashboardController extends AbstractController
     {
         $user = $this->getUser(); //OBTENGO AL USUARIO ACTUALMENTE LOGUEADO
         if ($user) {
-            $em = $doctrine->getManager();
-            $query = $em->getRepository(Entrada::class)->BuscarTodasLasEntradas();
-            $query = $em->getRepository(Salida::class)->BuscarTodasLasSalidas();
-            $pagination = $paginator->paginate(
-                $query, /* query NOT result */
-                $request->query->getInt('page', 1), /*page number*/
-                5 /*limit per page*/
-            );
-            return $this->render('dashboard/index.html.twig', [
-                'pagination' => $pagination
-            ]);
+
+            return $this->render('dashboard/index.html.twig', []);
         } else {
             return $this->redirectToRoute('app_login');
         }
     }
 }
+
+/*$fecha_formato = \DateTime::createFromFormat('d/m/Y, H:i:s', $fecha_publicacion);*/
