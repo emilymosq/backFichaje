@@ -51,8 +51,8 @@ class ApiEntradaController extends AbstractController
         $entrada->setFechaPublicacion($datetime);
         $entrada->setComentario($comentario);
         $entrada->setLocacion($locacion);
-        //$entrada->setUser($user_id);
-        $entrada->setUser($this->getUser());
+        $entrada->setUser($user_id);
+        //$entrada->setUser($this->getUser());
 
         $em = $doctrine->getManager();
         $em->persist($entrada);

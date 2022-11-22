@@ -30,7 +30,7 @@ class ApiEntradaController extends AbstractController
         $fecha_publicacion = $data['fecha_publicacion'];
         $comentario = $data['comentario'];
         $locacion = $data['locacion'];
-        $user_id =(int)$data['user'];
+        $user_id = $data['user'];
     
         $entrada = new Entrada();
         //$fecha_formato = \DateTime::createFromInterface($fecha_publicacion);
@@ -51,8 +51,8 @@ class ApiEntradaController extends AbstractController
         $entrada->setFechaPublicacion($datetime);
         $entrada->setComentario($comentario);
         $entrada->setLocacion($locacion);
-        //$entrada->setUser($user_id);
-        $entrada->setUser($this->getUser());
+        $entrada->setUser($user_id);
+        //$entrada->setUser($this->getUser());
 
         $em = $doctrine->getManager();
         $em->persist($entrada);
