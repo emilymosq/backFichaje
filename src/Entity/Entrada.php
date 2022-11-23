@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Entrada
 {
 
+    const FICHAJE_EXITOSO = 'Tu fichaje se ha realizado exitosamente';
+
     const TYPES = [
         'Talent Garden - Madrid' => 'Madrid',
         'Factoría F5 - Barcelona' => 'Barcelona',

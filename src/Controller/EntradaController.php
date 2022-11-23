@@ -48,7 +48,8 @@ class EntradaController extends AbstractController
             $em = $doctrine->getManager();
             $em->persist($entrada);
             $em->flush();
-            return $this->redirectToRoute('app_dashboard');
+            $this->addFlash('exito', Entrada::FICHAJE_EXITOSO);
+            return $this->redirectToRoute('app_entrada');
         }
         return $this->render('entrada/index.html.twig', [
             'form' => $form->createView()

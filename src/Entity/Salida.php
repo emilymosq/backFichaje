@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Salida
 {
 
+    const FICHAJE_EXITOSO = '¡Has terminado tu jornada laboral!';
+
     const TYPES = [
         'Talent Garden - Madrid' => 'Madrid',
         'Factoría F5 - Barcelona' => 'Barcelona',

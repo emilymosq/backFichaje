@@ -56,6 +56,7 @@ class CrudController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->save($user, true);
+            $this->addFlash('exito', User::CAMBIO_EXITOSO);
 
             return $this->redirectToRoute('app_crud_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -69,7 +70,7 @@ class CrudController extends AbstractController
     #[Route('/{id}', name: 'app_crud_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user, true);
         }
 

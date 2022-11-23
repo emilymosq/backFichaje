@@ -13,6 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     const REGISTRO_EXITOSO = 'Se ha registrado exitosamente';
+    const CAMBIO_EXITOSO = 'Se ha hecho el cambio exitosamente';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

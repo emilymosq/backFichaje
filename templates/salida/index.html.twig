@@ -10,6 +10,11 @@
             <div class="col-10 bg-white rounded my-3 p-5">
             <center>
                 <h1>Registrar Fichaje de Salida</h1>
+                {% for message in app.flashes('exito') %}
+                    <div class="alert alert-success">
+                {{ message }}
+                    </div>
+                {% endfor %}
                 {{form(form)}}
             </center>
             </div>

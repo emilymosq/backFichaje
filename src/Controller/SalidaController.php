@@ -24,7 +24,8 @@ class SalidaController extends AbstractController
             $em = $doctrine->getManager();
             $em->persist($salida);
             $em->flush();
-            return $this->redirectToRoute('app_dashboard');
+            $this->addFlash('exito', Salida::FICHAJE_EXITOSO);
+            return $this->redirectToRoute('app_salida');
         }
         return $this->render('salida/index.html.twig', [
             'form' => $form->createView()
