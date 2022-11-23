@@ -55,6 +55,13 @@ security:
     access_control:
         - { path: ^/registro, roles: ROLE_SUPERUSER}
         - { path: ^/crud, roles: ROLE_ADMIN}
+        - { path: ^/asistencia, roles: ROLE_ADMIN}
+        - { path: ^/todosentrada, roles: ROLE_ADMIN}
+        - { path: ^/todossalida, roles: ROLE_ADMIN}
+        - { path: ^/mis-entradas, roles: IS_AUTHENTICATED_FULLY}
+        - { path: ^/mis-salidas, roles: IS_AUTHENTICATED_FULLY}
+        - { path: ^/entrada, roles: IS_AUTHENTICATED_FULLY}
+        - { path: ^/salida, roles: IS_AUTHENTICATED_FULLY}
         - { path: ^/api/entrada, roles: IS_AUTHENTICATED_FULLY}
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
