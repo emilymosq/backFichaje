@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{parent()}} - Todos {% endblock %}
+{% block title %}{{parent()}} - Todos Entrada {% endblock %}
 
 {% block body %}
      {{ parent() }}
     <div class="container">
         <div class="row" style="justify-content: center; margin-top: 20px">
-            <div class="col-md-8 cursor">
+            <div class="col-md-8">
             <h3 style="color: white; text-align: center">Fichaje de Entrada de los Empleados</h3>
             {% for entrada in pagination %}
-                <div class="bg-white rounded p-3 my-3"  onclick="window.location.href='{{ path('VerEntrada',{id:entrada.id}) }}'">
+                <div class="bg-white rounded p-3 my-3 cursor"  onclick="window.location.href='{{ path('VerEntrada',{id:entrada.id}) }}'">
                     <div class="d-flex bd-highlight">
                         <div class="p-2 flex-grow-1 bd-highlight">
                              <h6 style="color: #28a745">Fichaje de Entrada de {{entrada.firstname}}</h6>

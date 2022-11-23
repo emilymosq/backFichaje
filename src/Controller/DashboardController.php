@@ -25,6 +25,18 @@ class DashboardController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
     }
+
+    #[Route('/asistencia', name: 'asistencia')]
+    public function asistencia(Request $request, ManagerRegistry $doctrine)
+    {
+        $user = $this->getUser(); //OBTENGO AL USUARIO ACTUALMENTE LOGUEADO
+        if ($user) {
+
+            return $this->render('dashboard/asistencia.html.twig', []);
+        } else {
+            return $this->redirectToRoute('app_login');
+        }
+    }
 }
 
 /*$fecha_formato = \DateTime::createFromFormat('d/m/Y, H:i:s', $fecha_publicacion);*/

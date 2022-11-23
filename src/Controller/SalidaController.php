@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
 
 class SalidaController extends AbstractController
 {
@@ -47,5 +48,25 @@ class SalidaController extends AbstractController
         $user = $this->getUser();
         $salidas = $em->getRepository(Salida::class)->findBy(['user' => $user]);
         return $this->render('salida/misSalidas.html.twig', ['salidas' => $salidas]);
+    }
+
+    #[Route('/todossalida', name: 'todosSalida')]
+    public function TodosSalida(PaginatorInterface $paginator, Request $request, ManagerRegistry $doctrine)
+    {
+        $user = $this->getUser(); //OBTENGO AL USUARIO ACTUALMENTE LOGUEADO
+        if ($user) {
+            $em = $doctrine->getManager();
+            $query = $em->getRepository(Salida::class)->BuscarTodasLasSalidas();
+            $pagination = $paginator->paginate(
+                $query, /* query NOT result */
+                $request->query->getInt('page', 1), /*page number*/
+                10 /*limit per page*/
+            );
+            return $this->render('salida/todossalida.html.twig', [
+                'pagination' => $pagination
+            ]);
+        } else {
+            return $this->redirectToRoute('app_login');
+        }
     }
 }

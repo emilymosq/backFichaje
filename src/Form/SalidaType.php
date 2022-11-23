@@ -19,7 +19,7 @@ class SalidaType extends AbstractType
                 'choices'  => Salida::TYPES
             ])
             ->add('comentario')
-            ->add('INICIAR', SubmitType::class);
+            ->add('FINALIZAR', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
