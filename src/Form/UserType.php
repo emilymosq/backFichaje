@@ -32,6 +32,7 @@ class UserType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('active')
+            ->add('horasSemanales')
             ->add('Registrar', SubmitType::class);
 
 

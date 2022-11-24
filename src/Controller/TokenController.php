@@ -1,7 +1,7 @@
 <?php
- 
+
 namespace App\Controller;
- 
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,48 +11,52 @@ use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPasspor
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
- 
- 
+
+
 use App\Repository\UserRepository;
- 
+
 use App\Entity\User;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
- 
+
 
 class TokenController extends AbstractController
 {
 
-    #[Route(path: '/token', name: 'app_token')]
+    #[Route('/token', name: 'app_token', methods: ['GET'])]
     public function index(Request $request, UserRepository $userRepository): Response
-   {
-       $em = $this->getDoctrine()->getManager();
- 
-       if($request->query->get('bearer')) {
-           $token = $request->query->get('bearer');
-       }else {
-           return $this->redirectToRoute('app_login');
-       }
- 
-       $tokenParts = explode(".", $token); 
-       $tokenHeader = base64_decode($tokenParts[0]);
-       $tokenPayload = base64_decode($tokenParts[1]);
-       $jwtHeader = json_decode($tokenHeader);
-       $jwtPayload = json_decode($tokenPayload);
- 
-       $user = $userRepository->findOneByEmail($jwtPayload->username);
-       dump($user);die;
-       $response = new Response();
-       $response->setContent(json_encode([
-           'auth' => 'ok',
-           'email' => $user->getEmail()
-       ]));
-       $response->headers->set('Content-Type', 'application/json');
-       $response->headers->set('Access-Control-Allow-Origin', '*');
-       $response->headers->set('pass', 'ok');
-       $response->headers->set('email', $user->getEmail());
-       $response->headers->setCookie(new Cookie('Authorization', $token));
-       $response->headers->setCookie(new Cookie('BEARER', $token));
-       return $response;
-   }
-}
+    {
 
+        $em = $this->getDoctrine()->getManager();
+
+        if ($request->query->get('bearer')) {
+            $token = $request->query->get('bearer');
+        } else {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $tokenParts = explode(".", $token);
+        $tokenHeader = base64_decode($tokenParts[0]);
+        $tokenPayload = base64_decode($tokenParts[1]);
+        $jwtHeader = json_decode($tokenHeader);
+        $jwtPayload = json_decode($tokenPayload);
+
+        $user = $userRepository->findOneByEmail($jwtPayload->username);
+
+        $response = new Response();
+        $response->setContent(json_encode([
+            'auth' => 'ok',
+            'userId' => $user->getId(),
+            'nombre' => $user->getFirstname()
+        ]));
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('pass', 'ok');
+        $response->headers->set('userId', $user->getId());
+        $response->headers->set('nombre', $user->getFirstname());
+        $response->headers->setCookie(new Cookie('Authorization', $token));
+        $response->headers->setCookie(new Cookie('BEARER', $token));
+        // dump($response);
+        // die;
+        return $response;
+    }
+}

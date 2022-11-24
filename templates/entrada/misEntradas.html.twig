@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{parent()}} - Mis entradas{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+        <div class="row" style="justify-content: center; margin-top: 20px">
+            <div class="col-md-6">
+            <h2 style="color: white; text-align: center">Mis Entradas</h2>
+                {% for entrada in entradas %}
+                    <div class="bg-white rounded p-3 my-3" onclick="window.location.href='{{ path('verEntrada',{id:entrada.id}) }}'" style="cursor: pointer">
+                        <h6 style="color: #28a745">{{ entrada.user.firstName }} - Fichaje de Entrada</h6>
+                        <div class=" bg-green"><i class="far fa-clock"></i><strong> Fecha: {{ entrada.fechaPublicacion | date }} </strong></div>
+                    </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+    </div>
+{% endblock %}

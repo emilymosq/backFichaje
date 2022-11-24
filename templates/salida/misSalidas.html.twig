@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{parent()}} - Mis Salidas{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+        <div class="row" style="justify-content: center; margin-top: 20px">
+            <div class="col-md-6">
+            <h2 style="color: white; text-align: center">Mis Salidas</h2>
+                {% for salida in salidas %}
+                    <div class="bg-white rounded p-3 my-3" onclick="window.location.href='{{ path('verSalida',{id:salida.id}) }}'" style="cursor: pointer">
+                        <h6>{{ salida.user.firstName }} - Fichaje de Salida</h6>
+                        <div class=" bg-green"><i class="far fa-clock"></i><strong> Fecha: {{ salida.fechaPublicacion | date }} </strong></div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

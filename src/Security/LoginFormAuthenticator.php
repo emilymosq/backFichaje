@@ -48,7 +48,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
         // For example:
         // return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        return new RedirectResponse('dashboard');
+        return new RedirectResponse('/');
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

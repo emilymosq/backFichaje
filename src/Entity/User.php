@@ -12,6 +12,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    const REGISTRO_EXITOSO = 'Se ha registrado exitosamente';
+    const CAMBIO_EXITOSO = 'Se ha hecho el cambio exitosamente';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -35,6 +38,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 100)]
     private ?string $lastname = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $horasSemanales = null;
+
     #[ORM\Column]
     private ?bool $active = null;
 
@@ -43,6 +49,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'signoutuser', targetEntity: SignOut::class)]
     private Collection $usersignout;
+
+    #[ORM\OneToMany(targetEntity: Entrada::class, mappedBy: 'user')]
+    private $entrada;
+
+    #[ORM\OneToMany(targetEntity: Salida::class, mappedBy: 'user')]
+    private $salida;
 
     public function __construct()
     {
@@ -231,6 +243,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $usersignout->setSignoutuser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getHorasSemanales(): ?string
+    {
+        return $this->horasSemanales;
+    }
+
+    public function setHorasSemanales(string $horasSemanales): self
+    {
+        $this->horasSemanales = $horasSemanales;
 
         return $this;
     }
