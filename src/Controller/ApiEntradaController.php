@@ -17,30 +17,30 @@ use DateTime;
 
 class ApiEntradaController extends AbstractController
 {
-    public function __controller(EntradaRepository $entradaRepository) 
+    public function __controller(EntradaRepository $entradaRepository)
     {
         $this->entradaRepository = $entradaRepository;
     }
 
     #[Route('/api/entrada', name: 'app_api_entrada',  methods: ['POST'])]
     public function crear(Request $request, ManagerRegistry $doctrine): JsonResponse
-    {   
+    {
         $data = json_decode($request->getContent(), true);
-        
+
         $fecha_publicacion = $data['fecha_publicacion'];
         $comentario = $data['comentario'];
         $locacion = $data['locacion'];
         $userId = $data['user'];
-    
+
         $entrada = new Entrada();
 
         $datetime = \DateTime::createFromFormat('d-m-Y H:i:s', $fecha_publicacion);
-        
+
 
         $entrada->setFechaPublicacion($datetime);
         $entrada->setComentario($comentario);
         $entrada->setLocacion($locacion);
-        
+
 
 
         $em = $doctrine->getManager();
@@ -49,10 +49,13 @@ class ApiEntradaController extends AbstractController
         $em->persist($entrada);
         $em->flush();
 
-        return $this->json('Ha fichado exitosamente', $status = 200, $headers = ['Access-Control-Allow-Origin'=>'*', 'Access-Control-Allow-Methods'=> 'POST,OPTIONS']);
+        $response = $entrada->getId();
+
+        return $this->json($response, $status = 200, $headers = ['Access-Control-Allow-Origin' => '*', 'Access-Control-Allow-Methods' => 'POST,OPTIONS']);
     }
 
-    public function getUsuario(int $id, ManagerRegistry $doctrine){
+    public function getUsuario(int $id, ManagerRegistry $doctrine)
+    {
 
         $em = $doctrine->getManager();
         $usuario = $em->getRepository(User::class)->find($id);
@@ -60,14 +63,15 @@ class ApiEntradaController extends AbstractController
     }
 
 
-    // /**
-    //  * @Route("/entrada/{id}", name="VerEntrada")
-    //  */
-    // #[Route('/entrada/{id}', name: 'verEntrada')]
+    /**
+     * @Route("/entrada/{id}", name="VerEntrada")
+     */
+    // #[Route('/api/entrada/{id}', name: 'api_entrada_detalle')]
     // public function VerEntrada($id, Request $request, ManagerRegistry $doctrine)
     // {
+    // 
     //     $em = $doctrine->getManager();
-    //     $entrada = $em->getRepository(Entrada::class)->find($id);
-    //     return ['entrada' => $entrada];
-    // } 
+    //   $entrada = $em->getRepository(Entrada::class)->find(intval($id));
+    //   return $this->json($entrada, $status = 200, $headers = ['Access-Control-Allow-Origin' => '*', 'Access-Control-Allow-Methods' => 'GET,OPTIONS']);
+    // }
 }

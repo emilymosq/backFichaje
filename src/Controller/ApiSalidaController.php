@@ -49,7 +49,10 @@ class ApiSalidaController extends AbstractController
         $em->persist($salida);
         $em->flush();
 
-        return $this->json('Ha fichado exitosamente', $status = 200, $headers = ['Access-Control-Allow-Origin'=>'*', 'Access-Control-Allow-Methods'=> 'POST,OPTIONS']);
+        $response = $salida->getId();
+
+
+        return $this->json($response, $status = 200, $headers = ['Access-Control-Allow-Origin'=>'*', 'Access-Control-Allow-Methods'=> 'POST,OPTIONS']);
     }
 
     public function getUsuario(int $id, ManagerRegistry $doctrine){
